@@ -31,7 +31,7 @@ const Contact = () => {
     {
       icon: Mail,
       title: 'Email Address',
-      content: 'support@mytechbali.com',
+      content: 'mytechbali@gmail.com',
     },
     {
       icon: Clock,

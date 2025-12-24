@@ -74,7 +74,7 @@ const Footer = () => {
               <li>Jl. Sedap Malam</li>
               <li>Denpasar, Bali, Indonesia</li>
               <li>+62 857-4263-0809</li>
-              <li>support@mytechbali.com</li>
+              <li>mytechbali@gmail.com</li>
             </ul>
           </div>
         </div>
