@@ -21,7 +21,7 @@ const Contact = () => {
     {
       icon: MapPin,
       title: 'Our Location',
-      content: 'Jl. Teknologi No. 123, Jakarta Selatan, Indonesia 12345',
+      content: 'Jl. Sunset Road No. 123, Kuta, Bali, Indonesia',
     },
     {
       icon: Phone,
@@ -31,7 +31,7 @@ const Contact = () => {
     {
       icon: Mail,
       title: 'Email Address',
-      content: 'support@techfixpro.id',
+      content: 'support@mytechbali.com',
     },
     {
       icon: Clock,

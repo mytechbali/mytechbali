@@ -14,7 +14,7 @@ const Footer = () => {
               <div className="w-10 h-10 bg-primary rounded-lg flex items-center justify-center">
                 <Wrench className="w-6 h-6 text-primary-foreground" />
               </div>
-              <span className="text-xl font-bold">TechFix<span className="text-primary">Pro</span></span>
+              <span className="text-xl font-bold">My Tech <span className="text-primary">Bali</span></span>
             </a>
             <p className="text-primary-foreground/70 mb-6">
               Your trusted partner for professional computer repair and maintenance services. 
@@ -71,17 +71,17 @@ const Footer = () => {
           <div>
             <h4 className="font-semibold text-lg mb-6">Contact Info</h4>
             <ul className="space-y-3 text-primary-foreground/70">
-              <li>Jl. Teknologi No. 123</li>
-              <li>Jakarta Selatan, Indonesia</li>
+              <li>Jl. Sunset Road No. 123</li>
+              <li>Kuta, Bali, Indonesia</li>
               <li>+62 812-3456-7890</li>
-              <li>support@techfixpro.id</li>
+              <li>support@mytechbali.com</li>
             </ul>
           </div>
         </div>
 
         {/* Bottom Bar */}
         <div className="pt-8 border-t border-primary-foreground/10 text-center text-primary-foreground/60">
-          <p>&copy; {new Date().getFullYear()} TechFix Pro. All rights reserved.</p>
+          <p>&copy; {new Date().getFullYear()} My Tech Bali. All rights reserved.</p>
         </div>
       </div>
     </footer>
