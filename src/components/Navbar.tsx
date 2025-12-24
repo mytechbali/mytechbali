@@ -60,13 +60,13 @@ const Navbar = () => {
           {/* CTA Button */}
           <div className="hidden md:flex items-center gap-4">
             <a
-              href="tel:+6281234567890"
+              href="tel:+6285742630809"
               className={`flex items-center gap-2 text-sm font-medium ${
                 isScrolled ? 'text-foreground' : 'text-primary-foreground'
               }`}
             >
               <Phone className="w-4 h-4" />
-              +62 812-3456-7890
+              +62 857-4263-0809
             </a>
             <Button variant={isScrolled ? 'default' : 'hero'} size="sm">
               Book Service
