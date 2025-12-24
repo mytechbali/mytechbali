@@ -71,8 +71,8 @@ const Footer = () => {
           <div>
             <h4 className="font-semibold text-lg mb-6">Contact Info</h4>
             <ul className="space-y-3 text-primary-foreground/70">
-              <li>Jl. Sunset Road No. 123</li>
-              <li>Kuta, Bali, Indonesia</li>
+              <li>Jl. Sedap Malam</li>
+              <li>Denpasar, Bali, Indonesia</li>
               <li>+62 857-4263-0809</li>
               <li>support@mytechbali.com</li>
             </ul>

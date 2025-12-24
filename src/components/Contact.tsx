@@ -21,7 +21,7 @@ const Contact = () => {
     {
       icon: MapPin,
       title: 'Our Location',
-      content: 'Jl. Sunset Road No. 123, Kuta, Bali, Indonesia',
+      content: 'Jl. Sedap Malam, Denpasar, Bali, Indonesia',
     },
     {
       icon: Phone,
