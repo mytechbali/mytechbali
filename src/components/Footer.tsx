@@ -1,4 +1,5 @@
-import { Wrench, Facebook, Instagram, Twitter, Linkedin } from 'lucide-react';
+import { Facebook, Instagram, Twitter, Linkedin } from 'lucide-react';
+import logo from '@/assets/logo.png';
 
 const Footer = () => {
   const quickLinks = ['Home', 'Services', 'About Us', 'Testimonials', 'Contact'];
@@ -11,9 +12,7 @@ const Footer = () => {
           {/* Brand */}
           <div>
             <a href="#home" className="flex items-center gap-2 mb-6">
-              <div className="w-10 h-10 bg-primary rounded-lg flex items-center justify-center">
-                <Wrench className="w-6 h-6 text-primary-foreground" />
-              </div>
+              <img src={logo} alt="My Tech Bali" className="h-10 w-auto" />
               <span className="text-xl font-bold">My Tech <span className="text-primary">Bali</span></span>
             </a>
             <p className="text-primary-foreground/70 mb-6">
