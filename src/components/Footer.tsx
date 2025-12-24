@@ -73,7 +73,7 @@ const Footer = () => {
             <ul className="space-y-3 text-primary-foreground/70">
               <li>Jl. Sunset Road No. 123</li>
               <li>Kuta, Bali, Indonesia</li>
-              <li>+62 812-3456-7890</li>
+              <li>+62 857-4263-0809</li>
               <li>support@mytechbali.com</li>
             </ul>
           </div>
