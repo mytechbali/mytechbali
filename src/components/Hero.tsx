@@ -1,6 +1,6 @@
 import { ArrowRight, Monitor, Wrench, HardDrive } from 'lucide-react';
 import { Button } from '@/components/ui/button';
-import heroBg from '@/assets/hero-bg.jpg';
+import heroVideo from '@/assets/hero-video.mp4';
 
 const Hero = () => {
   const quickServices = [
@@ -23,12 +23,18 @@ const Hero = () => {
 
   return (
     <section id="home" className="relative min-h-screen flex items-center">
-      {/* Background Image */}
-      <div
-        className="absolute inset-0 bg-cover bg-center bg-no-repeat"
-        style={{ backgroundImage: `url(${heroBg})` }}
-      >
-        <div className="absolute inset-0 bg-hero-overlay/80" />
+      {/* Video Background */}
+      <div className="absolute inset-0 overflow-hidden">
+        <video
+          autoPlay
+          loop
+          muted
+          playsInline
+          className="absolute w-full h-full object-cover"
+        >
+          <source src={heroVideo} type="video/mp4" />
+        </video>
+        <div className="absolute inset-0 bg-hero-overlay/75" />
       </div>
 
       <div className="container relative mx-auto px-4 pt-20">
@@ -36,7 +42,7 @@ const Hero = () => {
           {/* Badge */}
           <div className="inline-flex items-center gap-2 bg-primary/20 backdrop-blur-sm border border-primary/30 rounded-full px-4 py-2 mb-6 animate-fade-in">
             <span className="w-2 h-2 bg-accent rounded-full animate-pulse" />
-            <span className="text-sm text-primary-foreground/90">Professional Computer Service</span>
+            <span className="text-sm text-primary-foreground/90">Welcome to My Tech Bali</span>
           </div>
 
           {/* Headline */}
@@ -48,7 +54,7 @@ const Hero = () => {
 
           {/* Subheadline */}
           <p className="text-lg md:text-xl text-primary-foreground/80 max-w-xl mb-8 animate-slide-up animation-delay-200">
-            Your trusted partner for all computer repairs, upgrades, and maintenance. 
+            Your trusted partner for all computer repairs, upgrades, and maintenance in Bali. 
             Fast, reliable, and affordable service by certified technicians.
           </p>
 

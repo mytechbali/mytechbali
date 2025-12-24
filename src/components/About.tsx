@@ -31,8 +31,8 @@ const About = () => {
               <span className="text-gradient-primary"> Computer Care</span>
             </h2>
             <p className="text-muted-foreground text-lg mb-8">
-              With over 10 years of experience in the industry, TechFix Pro has become the go-to 
-              destination for computer repair and maintenance services. Our team of certified 
+              With over 10 years of experience in the industry, My Tech Bali has become the go-to 
+              destination for computer repair and maintenance services in Bali. Our team of certified 
               technicians is committed to providing fast, reliable, and affordable solutions.
             </p>
 

@@ -38,7 +38,7 @@ const Navbar = () => {
               <Wrench className="w-6 h-6 text-primary-foreground" />
             </div>
             <span className={`text-xl font-bold transition-colors ${isScrolled ? 'text-foreground' : 'text-primary-foreground'}`}>
-              TechFix<span className="text-primary">Pro</span>
+              My Tech <span className="text-primary">Bali</span>
             </span>
           </a>
 
