@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { Menu, X, Phone } from 'lucide-react';
 import { Button } from '@/components/ui/button';
+import ThemeToggle from '@/components/ThemeToggle';
 import logo from '@/assets/logo.png';
 
 const Navbar = () => {
@@ -67,6 +68,7 @@ const Navbar = () => {
               <Phone className="w-4 h-4" />
               +62 857-4263-0809
             </a>
+            <ThemeToggle isScrolled={isScrolled} />
             <Button variant={isScrolled ? 'default' : 'hero'} size="sm">
               Book Service
             </Button>
@@ -96,6 +98,10 @@ const Navbar = () => {
                 {link.name}
               </a>
             ))}
+            <div className="flex items-center justify-between py-2">
+              <span className="text-foreground text-sm">Theme</span>
+              <ThemeToggle isScrolled={true} />
+            </div>
             <Button variant="default" className="w-full">
               Book Service
             </Button>
