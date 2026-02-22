@@ -2,11 +2,14 @@ import { useState, useEffect } from 'react';
 import { Menu, X, Phone } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import ThemeToggle from '@/components/ThemeToggle';
+import LanguageSwitcher from '@/components/LanguageSwitcher';
+import { useLanguage } from '@/i18n/LanguageContext';
 import logo from '@/assets/logo.png';
 
 const Navbar = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const { t } = useLanguage();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -17,11 +20,11 @@ const Navbar = () => {
   }, []);
 
   const navLinks = [
-    { name: 'Home', href: '#home' },
-    { name: 'Services', href: '#services' },
-    { name: 'About Us', href: '#about' },
-    { name: 'Testimonials', href: '#testimonials' },
-    { name: 'Contact', href: '#contact' },
+    { name: t.nav.home, href: '#home' },
+    { name: t.nav.services, href: '#services' },
+    { name: t.nav.about, href: '#about' },
+    { name: t.nav.testimonials, href: '#testimonials' },
+    { name: t.nav.contact, href: '#contact' },
   ];
 
   return (
@@ -46,7 +49,7 @@ const Navbar = () => {
           <div className="hidden md:flex items-center gap-8">
             {navLinks.map((link) => (
               <a
-                key={link.name}
+                key={link.href}
                 href={link.href}
                 className={`text-sm font-medium transition-colors hover:text-primary ${
                   isScrolled ? 'text-foreground' : 'text-primary-foreground/90'
@@ -58,7 +61,7 @@ const Navbar = () => {
           </div>
 
           {/* CTA Button */}
-          <div className="hidden md:flex items-center gap-4">
+          <div className="hidden md:flex items-center gap-3">
             <a
               href="tel:+6285742630809"
               className={`flex items-center gap-2 text-sm font-medium ${
@@ -68,9 +71,10 @@ const Navbar = () => {
               <Phone className="w-4 h-4" />
               +62 857-4263-0809
             </a>
+            <LanguageSwitcher isScrolled={isScrolled} />
             <ThemeToggle isScrolled={isScrolled} />
             <Button variant={isScrolled ? 'default' : 'hero'} size="sm">
-              Book Service
+              {t.nav.bookService}
             </Button>
           </div>
 
@@ -90,7 +94,7 @@ const Navbar = () => {
           <div className="container mx-auto px-4 py-4 space-y-4">
             {navLinks.map((link) => (
               <a
-                key={link.name}
+                key={link.href}
                 href={link.href}
                 onClick={() => setIsMobileMenuOpen(false)}
                 className="block text-foreground hover:text-primary transition-colors py-2"
@@ -99,11 +103,14 @@ const Navbar = () => {
               </a>
             ))}
             <div className="flex items-center justify-between py-2">
-              <span className="text-foreground text-sm">Theme</span>
-              <ThemeToggle isScrolled={true} />
+              <span className="text-foreground text-sm">{t.nav.theme}</span>
+              <div className="flex items-center gap-2">
+                <LanguageSwitcher isScrolled={true} />
+                <ThemeToggle isScrolled={true} />
+              </div>
             </div>
             <Button variant="default" className="w-full">
-              Book Service
+              {t.nav.bookService}
             </Button>
           </div>
         </div>

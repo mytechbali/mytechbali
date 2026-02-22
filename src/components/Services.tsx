@@ -1,75 +1,34 @@
 import { Monitor, Laptop, HardDrive, Cpu, Shield, Wifi, Server, Smartphone } from 'lucide-react';
+import { useLanguage } from '@/i18n/LanguageContext';
 
 const Services = () => {
+  const { t } = useLanguage();
+
   const services = [
-    {
-      icon: Laptop,
-      title: 'Laptop Repair',
-      description: 'Screen replacement, keyboard repair, battery issues, and more for all laptop brands.',
-      features: ['Screen Replacement', 'Keyboard Repair', 'Battery Service'],
-    },
-    {
-      icon: Monitor,
-      title: 'Desktop Repair',
-      description: 'Complete desktop PC repair including hardware upgrades and troubleshooting.',
-      features: ['Hardware Upgrade', 'Power Supply', 'Motherboard Repair'],
-    },
-    {
-      icon: HardDrive,
-      title: 'Data Recovery',
-      description: 'Professional data recovery from damaged drives, SSDs, and storage devices.',
-      features: ['HDD Recovery', 'SSD Recovery', 'RAID Recovery'],
-    },
-    {
-      icon: Shield,
-      title: 'Virus Removal',
-      description: 'Complete malware and virus removal with security optimization.',
-      features: ['Malware Removal', 'Security Setup', 'System Cleanup'],
-    },
-    {
-      icon: Cpu,
-      title: 'Hardware Upgrade',
-      description: 'RAM, SSD, GPU upgrades to boost your computer performance.',
-      features: ['RAM Upgrade', 'SSD Installation', 'GPU Upgrade'],
-    },
-    {
-      icon: Wifi,
-      title: 'Network Setup',
-      description: 'Home and office network installation and troubleshooting.',
-      features: ['WiFi Setup', 'Router Config', 'Network Security'],
-    },
-    {
-      icon: Server,
-      title: 'Server Maintenance',
-      description: 'Business server setup, maintenance, and monitoring services.',
-      features: ['Server Setup', 'Backup Solutions', '24/7 Monitoring'],
-    },
-    {
-      icon: Smartphone,
-      title: 'Software Installation',
-      description: 'Operating system installation and software configuration.',
-      features: ['OS Installation', 'Driver Updates', 'Software Setup'],
-    },
+    { icon: Laptop, title: t.services.laptopRepair, description: t.services.laptopRepairDesc, features: t.services.laptopFeatures },
+    { icon: Monitor, title: t.services.desktopRepair, description: t.services.desktopRepairDesc, features: t.services.desktopFeatures },
+    { icon: HardDrive, title: t.services.dataRecovery, description: t.services.dataRecoveryDesc, features: t.services.dataRecoveryFeatures },
+    { icon: Shield, title: t.services.virusRemoval, description: t.services.virusRemovalDesc, features: t.services.virusFeatures },
+    { icon: Cpu, title: t.services.hardwareUpgrade, description: t.services.hardwareUpgradeDesc, features: t.services.hardwareFeatures },
+    { icon: Wifi, title: t.services.networkSetup, description: t.services.networkSetupDesc, features: t.services.networkFeatures },
+    { icon: Server, title: t.services.serverMaintenance, description: t.services.serverMaintenanceDesc, features: t.services.serverFeatures },
+    { icon: Smartphone, title: t.services.softwareInstallation, description: t.services.softwareInstallationDesc, features: t.services.softwareFeatures },
   ];
 
   return (
     <section id="services" className="py-24 bg-background">
       <div className="container mx-auto px-4">
-        {/* Section Header */}
         <div className="text-center max-w-2xl mx-auto mb-16">
           <span className="inline-block text-sm font-semibold text-primary uppercase tracking-wider mb-4">
-            Our Services
+            {t.services.label}
           </span>
           <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4">
-            Professional Computer
-            <span className="text-gradient-primary"> Solutions</span>
+            {t.services.title1}
+            <span className="text-gradient-primary">{t.services.title2}</span>
           </h2>
-          <p className="text-muted-foreground text-lg">
-            We offer comprehensive computer repair and maintenance services with certified technicians and quality parts.
-          </p>
+          <p className="text-muted-foreground text-lg">{t.services.subtitle}</p>
         </div>
 
-        {/* Services Grid */}
         <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
           {services.map((service, index) => (
             <div

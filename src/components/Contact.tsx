@@ -1,62 +1,39 @@
 import { MapPin, Phone, Mail, Clock, Send } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { useState } from 'react';
+import { useLanguage } from '@/i18n/LanguageContext';
 
 const Contact = () => {
+  const { t } = useLanguage();
   const [formData, setFormData] = useState({
-    name: '',
-    email: '',
-    phone: '',
-    service: '',
-    message: '',
+    name: '', email: '', phone: '', service: '', message: '',
   });
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    // Handle form submission
     console.log(formData);
   };
 
   const contactInfo = [
-    {
-      icon: MapPin,
-      title: 'Our Location',
-      content: 'Jl. Sedap Malam, Denpasar, Bali, Indonesia',
-    },
-    {
-      icon: Phone,
-      title: 'Phone Number',
-      content: '+62 857-4263-0809',
-    },
-    {
-      icon: Mail,
-      title: 'Email Address',
-      content: 'mytechbali@gmail.com',
-    },
-    {
-      icon: Clock,
-      title: 'Working Hours',
-      content: 'Mon - Sat: 09:00 - 21:00',
-    },
+    { icon: MapPin, title: t.contact.location, content: 'Jl. Sedap Malam, Denpasar, Bali, Indonesia' },
+    { icon: Phone, title: t.contact.phone, content: '+62 857-4263-0809' },
+    { icon: Mail, title: t.contact.email, content: 'mytechbali@gmail.com' },
+    { icon: Clock, title: t.contact.workingHours, content: t.contact.workingHoursValue },
   ];
 
   return (
     <section id="contact" className="py-24 bg-background">
       <div className="container mx-auto px-4">
         <div className="grid lg:grid-cols-2 gap-16">
-          {/* Contact Info */}
           <div>
             <span className="inline-block text-sm font-semibold text-primary uppercase tracking-wider mb-4">
-              Contact Us
+              {t.contact.label}
             </span>
             <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-6">
-              Get In Touch
-              <span className="text-gradient-primary"> With Us</span>
+              {t.contact.title1}
+              <span className="text-gradient-primary">{t.contact.title2}</span>
             </h2>
-            <p className="text-muted-foreground text-lg mb-8">
-              Have a question or need our services? Feel free to contact us anytime. 
-              We're here to help with all your computer needs.
-            </p>
+            <p className="text-muted-foreground text-lg mb-8">{t.contact.subtitle}</p>
 
             <div className="grid sm:grid-cols-2 gap-6">
               {contactInfo.map((info, index) => (
@@ -73,73 +50,43 @@ const Contact = () => {
             </div>
           </div>
 
-          {/* Contact Form */}
           <div className="bg-card rounded-2xl p-8 shadow-card">
-            <h3 className="text-xl font-bold text-card-foreground mb-6">Send us a message</h3>
+            <h3 className="text-xl font-bold text-card-foreground mb-6">{t.contact.formTitle}</h3>
             <form onSubmit={handleSubmit} className="space-y-5">
               <div className="grid sm:grid-cols-2 gap-5">
                 <div>
-                  <label className="block text-sm font-medium text-foreground mb-2">Your Name</label>
-                  <input
-                    type="text"
-                    className="w-full px-4 py-3 rounded-lg border border-input bg-background text-foreground focus:outline-none focus:ring-2 focus:ring-primary/50"
-                    placeholder="John Doe"
-                    value={formData.name}
-                    onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                  />
+                  <label className="block text-sm font-medium text-foreground mb-2">{t.contact.yourName}</label>
+                  <input type="text" className="w-full px-4 py-3 rounded-lg border border-input bg-background text-foreground focus:outline-none focus:ring-2 focus:ring-primary/50" placeholder="John Doe" value={formData.name} onChange={(e) => setFormData({ ...formData, name: e.target.value })} />
                 </div>
                 <div>
-                  <label className="block text-sm font-medium text-foreground mb-2">Email Address</label>
-                  <input
-                    type="email"
-                    className="w-full px-4 py-3 rounded-lg border border-input bg-background text-foreground focus:outline-none focus:ring-2 focus:ring-primary/50"
-                    placeholder="john@example.com"
-                    value={formData.email}
-                    onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                  />
+                  <label className="block text-sm font-medium text-foreground mb-2">{t.contact.emailAddress}</label>
+                  <input type="email" className="w-full px-4 py-3 rounded-lg border border-input bg-background text-foreground focus:outline-none focus:ring-2 focus:ring-primary/50" placeholder="john@example.com" value={formData.email} onChange={(e) => setFormData({ ...formData, email: e.target.value })} />
                 </div>
               </div>
               <div className="grid sm:grid-cols-2 gap-5">
                 <div>
-                  <label className="block text-sm font-medium text-foreground mb-2">Phone Number</label>
-                  <input
-                    type="tel"
-                    className="w-full px-4 py-3 rounded-lg border border-input bg-background text-foreground focus:outline-none focus:ring-2 focus:ring-primary/50"
-                    placeholder="+62 812-3456-7890"
-                    value={formData.phone}
-                    onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
-                  />
+                  <label className="block text-sm font-medium text-foreground mb-2">{t.contact.phoneNumber}</label>
+                  <input type="tel" className="w-full px-4 py-3 rounded-lg border border-input bg-background text-foreground focus:outline-none focus:ring-2 focus:ring-primary/50" placeholder="+62 812-3456-7890" value={formData.phone} onChange={(e) => setFormData({ ...formData, phone: e.target.value })} />
                 </div>
                 <div>
-                  <label className="block text-sm font-medium text-foreground mb-2">Service Needed</label>
-                  <select
-                    className="w-full px-4 py-3 rounded-lg border border-input bg-background text-foreground focus:outline-none focus:ring-2 focus:ring-primary/50"
-                    value={formData.service}
-                    onChange={(e) => setFormData({ ...formData, service: e.target.value })}
-                  >
-                    <option value="">Select a service</option>
-                    <option value="laptop-repair">Laptop Repair</option>
-                    <option value="desktop-repair">Desktop Repair</option>
-                    <option value="data-recovery">Data Recovery</option>
-                    <option value="virus-removal">Virus Removal</option>
-                    <option value="hardware-upgrade">Hardware Upgrade</option>
-                    <option value="network-setup">Network Setup</option>
-                    <option value="other">Other</option>
+                  <label className="block text-sm font-medium text-foreground mb-2">{t.contact.serviceNeeded}</label>
+                  <select className="w-full px-4 py-3 rounded-lg border border-input bg-background text-foreground focus:outline-none focus:ring-2 focus:ring-primary/50" value={formData.service} onChange={(e) => setFormData({ ...formData, service: e.target.value })}>
+                    <option value="">{t.contact.selectService}</option>
+                    <option value="laptop-repair">{t.services.laptopRepair}</option>
+                    <option value="desktop-repair">{t.services.desktopRepair}</option>
+                    <option value="data-recovery">{t.services.dataRecovery}</option>
+                    <option value="virus-removal">{t.services.virusRemoval}</option>
+                    <option value="hardware-upgrade">{t.services.hardwareUpgrade}</option>
+                    <option value="network-setup">{t.services.networkSetup}</option>
                   </select>
                 </div>
               </div>
               <div>
-                <label className="block text-sm font-medium text-foreground mb-2">Your Message</label>
-                <textarea
-                  rows={4}
-                  className="w-full px-4 py-3 rounded-lg border border-input bg-background text-foreground focus:outline-none focus:ring-2 focus:ring-primary/50 resize-none"
-                  placeholder="Describe your issue or inquiry..."
-                  value={formData.message}
-                  onChange={(e) => setFormData({ ...formData, message: e.target.value })}
-                />
+                <label className="block text-sm font-medium text-foreground mb-2">{t.contact.yourMessage}</label>
+                <textarea rows={4} className="w-full px-4 py-3 rounded-lg border border-input bg-background text-foreground focus:outline-none focus:ring-2 focus:ring-primary/50 resize-none" placeholder={t.contact.messagePlaceholder} value={formData.message} onChange={(e) => setFormData({ ...formData, message: e.target.value })} />
               </div>
               <Button type="submit" size="lg" className="w-full">
-                Send Message
+                {t.contact.sendMessage}
                 <Send className="w-5 h-5" />
               </Button>
             </form>
