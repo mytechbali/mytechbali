@@ -5,9 +5,9 @@ const About = () => {
   const { t } = useLanguage();
 
   const stats = [
-    { icon: Users, value: '5000+', label: t.about.happyCustomers },
+    { icon: Users, value: '10+', label: t.about.happyCustomers },
     { icon: Clock, value: '10+', label: t.about.yearsExperience },
-    { icon: Award, value: '99%', label: t.about.successRate },
+    { icon: Award, value: '90%', label: t.about.successRate },
     { icon: CheckCircle, value: '24/7', label: t.about.support },
   ];
 
