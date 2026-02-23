@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import { Menu, X, Phone } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import ThemeToggle from '@/components/ThemeToggle';
-import LanguageSwitcher from '@/components/LanguageSwitcher';
+
 import { useLanguage } from '@/i18n/LanguageContext';
 import logo from '@/assets/logo.png';
 
@@ -71,7 +71,6 @@ const Navbar = () => {
               <Phone className="w-4 h-4" />
               +62 857-4263-0809
             </a>
-            <LanguageSwitcher isScrolled={isScrolled} />
             <ThemeToggle isScrolled={isScrolled} />
             <Button variant={isScrolled ? 'default' : 'hero'} size="sm">
               {t.nav.bookService}
@@ -105,7 +104,6 @@ const Navbar = () => {
             <div className="flex items-center justify-between py-2">
               <span className="text-foreground text-sm">{t.nav.theme}</span>
               <div className="flex items-center gap-2">
-                <LanguageSwitcher isScrolled={true} />
                 <ThemeToggle isScrolled={true} />
               </div>
             </div>
