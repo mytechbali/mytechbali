@@ -4,9 +4,7 @@ import { Language } from '@/i18n/translations';
 import { Globe } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 
-interface LanguageSwitcherProps {
-  isScrolled?: boolean;
-}
+
 
 const languageOptions: { code: Language; flag: string; label: string }[] = [
   { code: 'en', flag: '🇬🇧', label: 'English' },
@@ -18,7 +16,7 @@ const languageOptions: { code: Language; flag: string; label: string }[] = [
   { code: 'fr', flag: '🇫🇷', label: 'Français' },
 ];
 
-const LanguageSwitcher = ({ isScrolled = true }: LanguageSwitcherProps) => {
+const LanguageSwitcher = () => {
   const { language, setLanguage } = useLanguage();
   const [isOpen, setIsOpen] = useState(false);
   const ref = useRef<HTMLDivElement>(null);
@@ -34,23 +32,19 @@ const LanguageSwitcher = ({ isScrolled = true }: LanguageSwitcherProps) => {
   const current = languageOptions.find((l) => l.code === language)!;
 
   return (
-    <div className="relative" ref={ref}>
+    <div className="fixed bottom-6 left-6 z-50" ref={ref}>
       <Button
-        variant="ghost"
+        variant="default"
         size="sm"
         onClick={() => setIsOpen(!isOpen)}
-        className={`font-semibold text-xs px-2 gap-1 transition-colors ${
-          isScrolled
-            ? 'text-foreground hover:text-primary'
-            : 'text-primary-foreground hover:text-primary-foreground/80'
-        }`}
+        className="rounded-full shadow-lg hover:shadow-xl hover:scale-105 transition-all duration-300 gap-1.5 px-3 py-2"
       >
         <Globe className="w-4 h-4" />
         {current.flag} {current.code.toUpperCase()}
       </Button>
 
       {isOpen && (
-        <div className="absolute right-0 top-full mt-2 bg-card border border-border rounded-lg shadow-lg py-1 min-w-[160px] z-50">
+        <div className="absolute left-0 bottom-full mb-2 bg-card border border-border rounded-lg shadow-lg py-1 min-w-[160px] z-50">
           {languageOptions.map((lang) => (
             <button
               key={lang.code}
