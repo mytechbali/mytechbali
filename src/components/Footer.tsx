@@ -1,6 +1,5 @@
 import { Facebook, Instagram, Twitter, Linkedin } from 'lucide-react';
 import { useLanguage } from '@/i18n/LanguageContext';
-import LanguageSwitcher from '@/components/LanguageSwitcher';
 import logo from '@/assets/logo.png';
 
 const Footer = () => {
@@ -71,9 +70,8 @@ const Footer = () => {
           </div>
         </div>
 
-        <div className="pt-8 border-t border-primary-foreground/10 flex flex-col sm:flex-row items-center justify-between gap-4 text-primary-foreground/60">
+        <div className="pt-8 border-t border-primary-foreground/10 text-center text-primary-foreground/60">
           <p>&copy; {new Date().getFullYear()} My Tech Bali. {t.footer.copyright}</p>
-          <LanguageSwitcher isScrolled={true} />
         </div>
       </div>
     </footer>
