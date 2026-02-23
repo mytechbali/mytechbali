@@ -6,7 +6,6 @@ import { Button } from '@/components/ui/button';
 
 interface LanguageSwitcherProps {
   isScrolled?: boolean;
-  floating?: boolean;
 }
 
 const languageOptions: { code: Language; flag: string; label: string }[] = [
@@ -19,7 +18,7 @@ const languageOptions: { code: Language; flag: string; label: string }[] = [
   { code: 'fr', flag: '🇫🇷', label: 'Français' },
 ];
 
-const LanguageSwitcher = ({ isScrolled = true, floating = false }: LanguageSwitcherProps) => {
+const LanguageSwitcher = ({ isScrolled = true }: LanguageSwitcherProps) => {
   const { language, setLanguage } = useLanguage();
   const [isOpen, setIsOpen] = useState(false);
   const ref = useRef<HTMLDivElement>(null);
@@ -35,28 +34,23 @@ const LanguageSwitcher = ({ isScrolled = true, floating = false }: LanguageSwitc
   const current = languageOptions.find((l) => l.code === language)!;
 
   return (
-    <div className={`relative ${floating ? 'fixed bottom-6 left-6 z-50' : ''}`} ref={ref}>
+    <div className="relative" ref={ref}>
       <Button
-        variant={floating ? 'default' : 'ghost'}
+        variant="ghost"
         size="sm"
         onClick={() => setIsOpen(!isOpen)}
-        className={floating
-          ? 'rounded-full w-12 h-12 p-0 shadow-lg hover:shadow-xl hover:scale-110 transition-all duration-300'
-          : `font-semibold text-xs px-2 gap-1 transition-colors ${
-              isScrolled
-                ? 'text-foreground hover:text-primary'
-                : 'text-primary-foreground hover:text-primary-foreground/80'
-            }`
-        }
+        className={`font-semibold text-xs px-2 gap-1 transition-colors ${
+          isScrolled
+            ? 'text-foreground hover:text-primary'
+            : 'text-primary-foreground hover:text-primary-foreground/80'
+        }`}
       >
-        <Globe className={floating ? 'w-6 h-6' : 'w-4 h-4'} />
-        {!floating && <>{current.flag} {current.code.toUpperCase()}</>}
+        <Globe className="w-4 h-4" />
+        {current.flag} {current.code.toUpperCase()}
       </Button>
 
       {isOpen && (
-        <div className={`absolute bg-card border border-border rounded-lg shadow-lg py-1 min-w-[160px] z-50 ${
-          floating ? 'left-0 bottom-full mb-2' : 'right-0 top-full mt-2'
-        }`}>
+        <div className="absolute right-0 top-full mt-2 bg-card border border-border rounded-lg shadow-lg py-1 min-w-[160px] z-50">
           {languageOptions.map((lang) => (
             <button
               key={lang.code}
