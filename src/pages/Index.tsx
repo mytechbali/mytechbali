@@ -6,6 +6,7 @@ import Testimonials from '@/components/Testimonials';
 import Contact from '@/components/Contact';
 import Footer from '@/components/Footer';
 import WhatsAppButton from '@/components/WhatsAppButton';
+import LanguageSwitcher from '@/components/LanguageSwitcher';
 
 const Index = () => {
   return (
@@ -18,6 +19,7 @@ const Index = () => {
       <Contact />
       <Footer />
       <WhatsAppButton />
+      <LanguageSwitcher floating />
     </div>
   );
 };
