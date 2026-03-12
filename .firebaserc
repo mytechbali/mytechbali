@@ -1,5 +1,15 @@
 {
   "projects": {
     "default": "my-tech-bali"
-  }
+  },
+  "targets": {
+    "my-tech-bali": {
+      "hosting": {
+        "mytechbali": [
+          "my-tech-bali"
+        ]
+      }
+    }
+  },
+  "etags": {}
 }
