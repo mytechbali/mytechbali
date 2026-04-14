@@ -31,13 +31,13 @@ const Hero = () => {
           </div>
 
           <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-primary-foreground leading-tight mb-6 animate-slide-up">
-            {t.hero.headline1}
+            {settings.heroHeadline1 || t.hero.headline1}
             <br />
-            <span className="text-gradient-primary">{t.hero.headline2}</span>
+            <span className="text-gradient-primary">{settings.heroHeadline2 || t.hero.headline2}</span>
           </h1>
 
           <p className="text-lg md:text-xl text-primary-foreground/80 max-w-xl mb-8 animate-slide-up animation-delay-200">
-            {t.hero.subheadline}
+            {settings.heroSubheadline || t.hero.subheadline}
           </p>
 
           <div className="flex flex-col sm:flex-row gap-4 mb-16 animate-slide-up animation-delay-400">
