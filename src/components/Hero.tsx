@@ -1,10 +1,12 @@
 import { ArrowRight, Monitor, Wrench, HardDrive } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { useLanguage } from '@/i18n/LanguageContext';
+import { useSiteSettings } from '@/contexts/SiteSettingsContext';
 import heroVideo from '@/assets/hero-video.mp4';
 
 const Hero = () => {
   const { t } = useLanguage();
+  const { settings } = useSiteSettings();
 
   const quickServices = [
     { icon: Monitor, title: t.hero.computerRepair, description: t.hero.computerRepairDesc },
