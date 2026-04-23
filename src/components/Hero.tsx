@@ -41,12 +41,24 @@ const Hero = () => {
           </p>
 
           <div className="flex flex-col sm:flex-row gap-4 mb-16 animate-slide-up animation-delay-400">
-            <Button variant="hero" size="lg">
-              {t.hero.bookAppointment}
-              <ArrowRight className="w-5 h-5" />
+            <Button variant="hero" size="lg" asChild>
+              <a
+                href={`https://wa.me/6285742630809?text=${encodeURIComponent('Halo, saya ingin membuat janji untuk service komputer.')}`}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                {t.hero.bookAppointment}
+                <ArrowRight className="w-5 h-5" />
+              </a>
             </Button>
-            <Button variant="heroOutline" size="lg">
-              {t.hero.freeDiagnosis}
+            <Button variant="heroOutline" size="lg" asChild>
+              <a
+                href={`https://wa.me/6285742630809?text=${encodeURIComponent('Halo, saya ingin diagnosis gratis untuk komputer saya.')}`}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                {t.hero.freeDiagnosis}
+              </a>
             </Button>
           </div>
         </div>
