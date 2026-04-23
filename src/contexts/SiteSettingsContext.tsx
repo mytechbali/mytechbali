@@ -55,20 +55,48 @@ export const SiteSettingsProvider = ({ children }: { children: ReactNode }) => {
   // Apply CSS variables whenever settings change
   useEffect(() => {
     const root = document.documentElement;
-    root.style.setProperty('--primary', settings.primaryColor);
-    root.style.setProperty('--accent', settings.accentColor);
-    root.style.setProperty('--background', settings.backgroundColor);
-    root.style.setProperty('--foreground', settings.foregroundColor);
-    root.style.setProperty('--ring', settings.primaryColor);
+    // Use setProperty with 'important' so it overrides both :root and .dark class rules
+    root.style.setProperty('--primary', settings.primaryColor, 'important');
+    root.style.setProperty('--accent', settings.accentColor, 'important');
+    root.style.setProperty('--background', settings.backgroundColor, 'important');
+    root.style.setProperty('--foreground', settings.foregroundColor, 'important');
+    root.style.setProperty('--ring', settings.primaryColor, 'important');
+    root.style.setProperty('--card-foreground', settings.foregroundColor, 'important');
+    root.style.setProperty('--popover-foreground', settings.foregroundColor, 'important');
 
     // Update gradient
     root.style.setProperty(
       '--gradient-primary',
-      `linear-gradient(135deg, hsl(${settings.primaryColor}) 0%, hsl(${settings.accentColor}) 100%)`
+      `linear-gradient(135deg, hsl(${settings.primaryColor}) 0%, hsl(${settings.accentColor}) 100%)`,
+      'important'
+    );
+    root.style.setProperty(
+      '--shadow-card-hover',
+      `0 12px 32px -8px hsl(${settings.primaryColor} / 0.2)`,
+      'important'
+    );
+    root.style.setProperty(
+      '--shadow-glow',
+      `0 0 40px hsl(${settings.primaryColor} / 0.3)`,
+      'important'
     );
 
-    // Font
-    document.body.style.fontFamily = `'${settings.fontFamily}', sans-serif`;
+    // Inject Google Font for both body and heading fonts
+    const fonts = new Set([settings.fontFamily, settings.headingFontFamily].filter(Boolean));
+    fonts.forEach(font => {
+      const id = `gf-${font.replace(/\s+/g, '-')}`;
+      if (!document.getElementById(id)) {
+        const link = document.createElement('link');
+        link.id = id;
+        link.rel = 'stylesheet';
+        link.href = `https://fonts.googleapis.com/css2?family=${font.replace(/\s+/g, '+')}:wght@300;400;500;600;700;800&display=swap`;
+        document.head.appendChild(link);
+      }
+    });
+
+    // Apply font to entire document (html) so it cascades everywhere
+    root.style.setProperty('font-family', `'${settings.fontFamily}', sans-serif`, 'important');
+    document.body.style.setProperty('font-family', `'${settings.fontFamily}', sans-serif`, 'important');
 
     // Title
     document.title = settings.siteTitle;
