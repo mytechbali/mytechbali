@@ -52,45 +52,58 @@ const hexToHsl = (hex: string): string => {
   }
 };
 
-const ColorField = ({ label, value, onChange }: { label: string; value: string; onChange: (v: string) => void }) => (
-  <div className="space-y-2">
-    <Label className="text-sm font-medium">{label}</Label>
-    <div className="flex items-center gap-3">
-      <input
-        type="color"
-        value={hslToHex(value)}
-        onChange={e => onChange(hexToHsl(e.target.value))}
-        className="w-12 h-10 rounded-lg border border-input cursor-pointer"
-      />
-      <div className="flex-1 grid grid-cols-2 gap-2">
-        <div className="space-y-1">
-          <Label className="text-[10px] uppercase tracking-wide text-muted-foreground">HSL</Label>
-          <Input
-            value={value}
-            onChange={e => onChange(e.target.value)}
-            className="font-mono text-xs h-9"
-            placeholder="H S% L%"
-          />
+const ColorField = ({ label, value, onChange }: { label: string; value: string; onChange: (v: string) => void }) => {
+  const [hexInput, setHexInput] = useState(hslToHex(value).toUpperCase());
+
+  useEffect(() => {
+    setHexInput(hslToHex(value).toUpperCase());
+  }, [value]);
+
+  const handleHexChange = (raw: string) => {
+    setHexInput(raw);
+    let v = raw.trim();
+    if (!v.startsWith('#')) v = `#${v}`;
+    if (/^#[0-9a-fA-F]{6}$/.test(v)) {
+      onChange(hexToHsl(v));
+    }
+  };
+
+  return (
+    <div className="space-y-2">
+      <Label className="text-sm font-medium">{label}</Label>
+      <div className="flex items-center gap-3">
+        <input
+          type="color"
+          value={hslToHex(value)}
+          onChange={e => onChange(hexToHsl(e.target.value))}
+          className="w-12 h-10 rounded-lg border border-input cursor-pointer"
+        />
+        <div className="flex-1 grid grid-cols-2 gap-2">
+          <div className="space-y-1">
+            <Label className="text-[10px] uppercase tracking-wide text-muted-foreground">HSL</Label>
+            <Input
+              value={value}
+              onChange={e => onChange(e.target.value)}
+              className="font-mono text-xs h-9"
+              placeholder="H S% L%"
+            />
+          </div>
+          <div className="space-y-1">
+            <Label className="text-[10px] uppercase tracking-wide text-muted-foreground">HEX</Label>
+            <Input
+              value={hexInput}
+              onChange={e => handleHexChange(e.target.value)}
+              onBlur={() => setHexInput(hslToHex(value).toUpperCase())}
+              className="font-mono text-xs h-9 uppercase"
+              placeholder="#3B82F6"
+            />
+          </div>
         </div>
-        <div className="space-y-1">
-          <Label className="text-[10px] uppercase tracking-wide text-muted-foreground">HEX</Label>
-          <Input
-            value={hslToHex(value).toUpperCase()}
-            onChange={e => {
-              const v = e.target.value.trim();
-              if (/^#?[0-9a-fA-F]{6}$/.test(v)) {
-                onChange(hexToHsl(v.startsWith('#') ? v : `#${v}`));
-              }
-            }}
-            className="font-mono text-xs h-9 uppercase"
-            placeholder="#3B82F6"
-          />
-        </div>
+        <div className="w-10 h-10 rounded-lg border border-input shrink-0" style={{ backgroundColor: `hsl(${value})` }} />
       </div>
-      <div className="w-10 h-10 rounded-lg border border-input shrink-0" style={{ backgroundColor: `hsl(${value})` }} />
     </div>
-  </div>
-);
+  );
+};
 
 const AdminDashboard = () => {
   const navigate = useNavigate();
