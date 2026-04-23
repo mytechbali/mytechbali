@@ -62,8 +62,32 @@ const ColorField = ({ label, value, onChange }: { label: string; value: string; 
         onChange={e => onChange(hexToHsl(e.target.value))}
         className="w-12 h-10 rounded-lg border border-input cursor-pointer"
       />
-      <Input value={value} onChange={e => onChange(e.target.value)} className="flex-1 font-mono text-xs" placeholder="H S% L%" />
-      <div className="w-10 h-10 rounded-lg border border-input" style={{ backgroundColor: `hsl(${value})` }} />
+      <div className="flex-1 grid grid-cols-2 gap-2">
+        <div className="space-y-1">
+          <Label className="text-[10px] uppercase tracking-wide text-muted-foreground">HSL</Label>
+          <Input
+            value={value}
+            onChange={e => onChange(e.target.value)}
+            className="font-mono text-xs h-9"
+            placeholder="H S% L%"
+          />
+        </div>
+        <div className="space-y-1">
+          <Label className="text-[10px] uppercase tracking-wide text-muted-foreground">HEX</Label>
+          <Input
+            value={hslToHex(value).toUpperCase()}
+            onChange={e => {
+              const v = e.target.value.trim();
+              if (/^#?[0-9a-fA-F]{6}$/.test(v)) {
+                onChange(hexToHsl(v.startsWith('#') ? v : `#${v}`));
+              }
+            }}
+            className="font-mono text-xs h-9 uppercase"
+            placeholder="#3B82F6"
+          />
+        </div>
+      </div>
+      <div className="w-10 h-10 rounded-lg border border-input shrink-0" style={{ backgroundColor: `hsl(${value})` }} />
     </div>
   </div>
 );
