@@ -41,7 +41,7 @@ const Navbar = () => {
           <a href="#home" className="flex items-center gap-2">
             <img src={logo} alt="My Tech Bali" className="h-10 w-auto" />
             <span className={`text-xl font-bold transition-colors ${isScrolled ? 'text-foreground' : 'text-primary-foreground'}`}>
-              My Tech <span className="text-primary">Bali</span>
+              My Tech Bali
             </span>
           </a>
 
