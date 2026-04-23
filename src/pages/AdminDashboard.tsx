@@ -169,7 +169,14 @@ const AdminDashboard = () => {
             <h1 className="text-lg font-bold text-foreground">Site Settings</h1>
           </div>
           <div className="flex items-center gap-2">
-            <Button variant="ghost" size="sm" onClick={() => window.open('/', '_blank')}>
+            <Button
+              variant="ghost"
+              size="sm"
+              onClick={() => {
+                updateSettings(localSettings);
+                window.open('/', '_blank');
+              }}
+            >
               <Eye className="w-4 h-4 mr-1" /> Preview
             </Button>
             <Button variant="ghost" size="sm" onClick={() => navigate('/')}>
