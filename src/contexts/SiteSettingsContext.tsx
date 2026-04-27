@@ -16,6 +16,20 @@ export interface SiteSettings {
   heroHeadline2: string;
   heroSubheadline: string;
   footerDescription: string;
+  // Hero section
+  heroVideoUrl: string;          // empty = use bundled default
+  heroBadge: string;             // top pill text
+  heroOverlayOpacity: number;    // 0-100
+  heroPrimaryBtnLabel: string;
+  heroPrimaryBtnUrl: string;
+  heroSecondaryBtnLabel: string;
+  heroSecondaryBtnUrl: string;
+  heroService1Title: string;
+  heroService1Desc: string;
+  heroService2Title: string;
+  heroService2Desc: string;
+  heroService3Title: string;
+  heroService3Desc: string;
 }
 
 const defaultSettings: SiteSettings = {
@@ -30,6 +44,19 @@ const defaultSettings: SiteSettings = {
   heroHeadline2: '',
   heroSubheadline: '',
   footerDescription: '',
+  heroVideoUrl: '',
+  heroBadge: '',
+  heroOverlayOpacity: 75,
+  heroPrimaryBtnLabel: '',
+  heroPrimaryBtnUrl: 'https://wa.me/6285742630809?text=Halo%2C%20saya%20ingin%20membuat%20janji%20untuk%20service%20komputer.',
+  heroSecondaryBtnLabel: '',
+  heroSecondaryBtnUrl: 'https://wa.me/6285742630809?text=Halo%2C%20saya%20ingin%20diagnosis%20gratis%20untuk%20komputer%20saya.',
+  heroService1Title: '',
+  heroService1Desc: '',
+  heroService2Title: '',
+  heroService2Desc: '',
+  heroService3Title: '',
+  heroService3Desc: '',
 };
 
 interface SiteSettingsContextType {
