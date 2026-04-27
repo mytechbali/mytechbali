@@ -191,25 +191,29 @@ const AdminDashboard = () => {
         </div>
       </header>
 
-      <div className="container mx-auto px-4 py-8 max-w-4xl">
-        {/* Tabs */}
-        <div className="flex gap-2 mb-6">
-          {tabs.map(tab => (
-            <button
-              key={tab.id}
-              onClick={() => setActiveTab(tab.id)}
-              className={`flex items-center gap-2 px-4 py-2.5 rounded-lg text-sm font-medium transition-all ${
-                activeTab === tab.id
-                  ? 'bg-primary text-primary-foreground shadow-md'
-                  : 'bg-card text-muted-foreground hover:text-foreground hover:bg-card/80'
-              }`}
-            >
-              <tab.icon className="w-4 h-4" />
-              {tab.label}
-            </button>
-          ))}
-        </div>
+      <div className="container mx-auto px-4 py-8 max-w-7xl flex gap-6">
+        {/* Left sidebar nav */}
+        <aside className="w-56 shrink-0">
+          <nav className="bg-card border border-border rounded-xl p-2 sticky top-20 space-y-1">
+            {tabs.map(tab => (
+              <button
+                key={tab.id}
+                onClick={() => setActiveTab(tab.id)}
+                className={`w-full flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm font-medium transition-all text-left ${
+                  activeTab === tab.id
+                    ? 'bg-primary text-primary-foreground shadow-sm'
+                    : 'text-muted-foreground hover:text-foreground hover:bg-muted'
+                }`}
+              >
+                <tab.icon className="w-4 h-4 shrink-0" />
+                {tab.label}
+              </button>
+            ))}
+          </nav>
+        </aside>
 
+        {/* Right content */}
+        <div className="flex-1 min-w-0">
         {/* Colors */}
         {activeTab === 'colors' && (
           <Card>
@@ -329,7 +333,11 @@ const AdminDashboard = () => {
           </Card>
         )}
 
-        {/* Action Bar */}
+        {/* Media */}
+        {activeTab === 'media' && <MediaLibrary />}
+
+        {/* Action Bar (hidden on Media tab — uploads save instantly) */}
+        {activeTab !== 'media' && (
         <div className="flex items-center justify-between mt-6 bg-card rounded-xl p-4 border border-border shadow-card">
           <Button variant="outline" onClick={handleReset} className="text-destructive border-destructive/30 hover:bg-destructive/10">
             <RotateCcw className="w-4 h-4 mr-1" /> Reset to Default
@@ -340,6 +348,8 @@ const AdminDashboard = () => {
               <Save className="w-4 h-4 mr-1" /> Save Changes
             </Button>
           </div>
+        </div>
+        )}
         </div>
       </div>
     </div>
