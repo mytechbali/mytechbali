@@ -5,7 +5,8 @@ import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { useSiteSettings, defaultSettings } from '@/contexts/SiteSettingsContext';
-import { LogOut, Palette, Type, FileText, RotateCcw, Save, Home, Eye } from 'lucide-react';
+import { LogOut, Palette, Type, FileText, RotateCcw, Save, Home, Eye, FolderOpen, Upload, Trash2, Copy, Image as ImageIcon, Video, File as FileIcon } from 'lucide-react';
+import { toast } from 'sonner';
 
 const GOOGLE_FONTS = [
   'Outfit', 'Inter', 'Poppins', 'Roboto', 'Open Sans', 'Montserrat',
