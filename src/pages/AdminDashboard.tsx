@@ -5,8 +5,8 @@ import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { useSiteSettings, defaultSettings } from '@/contexts/SiteSettingsContext';
-import { LogOut, Palette, Type, FileText, RotateCcw, Save, Home, Eye, FolderOpen, Upload, Trash2, Copy, Image as ImageIcon, Video, File as FileIcon } from 'lucide-react';
-import { toast } from 'sonner';
+import { LogOut, Palette, Type, FileText, RotateCcw, Save, Home, Eye, FolderOpen } from 'lucide-react';
+import { MediaLibrary } from '@/components/admin/MediaLibrary';
 
 const GOOGLE_FONTS = [
   'Outfit', 'Inter', 'Poppins', 'Roboto', 'Open Sans', 'Montserrat',
@@ -111,7 +111,7 @@ const AdminDashboard = () => {
   const { settings, updateSettings, resetSettings } = useSiteSettings();
   const [localSettings, setLocalSettings] = useState(settings);
   const [saved, setSaved] = useState(false);
-  const [activeTab, setActiveTab] = useState<'colors' | 'typography' | 'text'>('colors');
+  const [activeTab, setActiveTab] = useState<'colors' | 'typography' | 'text' | 'media'>('colors');
 
   useEffect(() => {
     if (localStorage.getItem('mtb_admin_auth') !== 'true') {
@@ -156,6 +156,7 @@ const AdminDashboard = () => {
     { id: 'colors' as const, label: 'Colors', icon: Palette },
     { id: 'typography' as const, label: 'Typography', icon: Type },
     { id: 'text' as const, label: 'Text & Title', icon: FileText },
+    { id: 'media' as const, label: 'Media Library', icon: FolderOpen },
   ];
 
   return (
