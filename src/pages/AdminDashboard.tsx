@@ -301,6 +301,11 @@ const AdminDashboard = () => {
           </Card>
         )}
 
+        {/* Hero Section */}
+        {activeTab === 'hero' && (
+          <HeroEditor settings={localSettings} update={update} />
+        )}
+
         {/* Text & Title */}
         {activeTab === 'text' && (
           <Card>
