@@ -5,8 +5,9 @@ import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { useSiteSettings, defaultSettings } from '@/contexts/SiteSettingsContext';
-import { LogOut, Palette, Type, FileText, RotateCcw, Save, Home, Eye, FolderOpen } from 'lucide-react';
+import { LogOut, Palette, Type, FileText, RotateCcw, Save, Home, Eye, FolderOpen, Sparkles } from 'lucide-react';
 import { MediaLibrary } from '@/components/admin/MediaLibrary';
+import { HeroEditor } from '@/components/admin/HeroEditor';
 
 const GOOGLE_FONTS = [
   'Outfit', 'Inter', 'Poppins', 'Roboto', 'Open Sans', 'Montserrat',
@@ -111,7 +112,7 @@ const AdminDashboard = () => {
   const { settings, updateSettings, resetSettings } = useSiteSettings();
   const [localSettings, setLocalSettings] = useState(settings);
   const [saved, setSaved] = useState(false);
-  const [activeTab, setActiveTab] = useState<'colors' | 'typography' | 'text' | 'media'>('colors');
+  const [activeTab, setActiveTab] = useState<'colors' | 'typography' | 'hero' | 'text' | 'media'>('colors');
 
   useEffect(() => {
     if (localStorage.getItem('mtb_admin_auth') !== 'true') {
@@ -148,13 +149,14 @@ const AdminDashboard = () => {
     navigate('/admin');
   };
 
-  const update = (key: keyof typeof localSettings, value: string) => {
+  const update = (key: keyof typeof localSettings, value: string | number) => {
     setLocalSettings(prev => ({ ...prev, [key]: value }));
   };
 
   const tabs = [
     { id: 'colors' as const, label: 'Colors', icon: Palette },
     { id: 'typography' as const, label: 'Typography', icon: Type },
+    { id: 'hero' as const, label: 'Hero Section', icon: Sparkles },
     { id: 'text' as const, label: 'Text & Title', icon: FileText },
     { id: 'media' as const, label: 'Media Library', icon: FolderOpen },
   ];
@@ -297,6 +299,11 @@ const AdminDashboard = () => {
               </div>
             </CardContent>
           </Card>
+        )}
+
+        {/* Hero Section */}
+        {activeTab === 'hero' && (
+          <HeroEditor settings={localSettings} update={update} />
         )}
 
         {/* Text & Title */}
