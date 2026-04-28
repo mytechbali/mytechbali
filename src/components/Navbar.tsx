@@ -31,8 +31,8 @@ const Navbar = () => {
     <nav
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
         isScrolled
-          ? 'bg-card/95 backdrop-blur-md shadow-card'
-          : 'bg-transparent'
+          ? 'translate-y-0 opacity-100 bg-card/95 backdrop-blur-md shadow-card'
+          : '-translate-y-full opacity-0 pointer-events-none bg-transparent'
       }`}
     >
       <div className="container mx-auto px-4">
