@@ -7,6 +7,7 @@ import Contact from '@/components/Contact';
 import Footer from '@/components/Footer';
 import WhatsAppButton from '@/components/WhatsAppButton';
 import LanguageSwitcher from '@/components/LanguageSwitcher';
+import LatestPosts from '@/components/LatestPosts';
 
 const Index = () => {
   return (
@@ -16,6 +17,7 @@ const Index = () => {
       <Services />
       <About />
       <Testimonials />
+      <LatestPosts />
       <Contact />
       <Footer />
       <WhatsAppButton />
