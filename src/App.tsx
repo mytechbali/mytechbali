@@ -11,6 +11,8 @@ import NotFound from "./pages/NotFound";
 import AdminLogin from "./pages/AdminLogin";
 import AdminDashboard from "./pages/AdminDashboard";
 import ServiceDetail from "./pages/ServiceDetail";
+import PostList from "./pages/posts/PostList";
+import PostDetail from "./pages/posts/PostDetail";
 
 const queryClient = new QueryClient();
 
@@ -26,6 +28,10 @@ const App = () => (
               <Routes>
                 <Route path="/" element={<Index />} />
               <Route path="/services/:slug" element={<ServiceDetail />} />
+                <Route path="/blog" element={<PostList kind="blog" />} />
+                <Route path="/blog/:slug" element={<PostDetail kind="blog" />} />
+                <Route path="/portfolio" element={<PostList kind="portfolio" />} />
+                <Route path="/portfolio/:slug" element={<PostDetail kind="portfolio" />} />
                 <Route path="/admin" element={<AdminLogin />} />
                 <Route path="/admin/dashboard" element={<AdminDashboard />} />
                 {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}

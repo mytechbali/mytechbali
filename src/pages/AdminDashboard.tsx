@@ -5,10 +5,11 @@ import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { useSiteSettings, defaultSettings } from '@/contexts/SiteSettingsContext';
-import { LogOut, Palette, Type, FileText, RotateCcw, Save, Home, Eye, FolderOpen, Sparkles, Languages } from 'lucide-react';
+import { LogOut, Palette, Type, FileText, RotateCcw, Save, Home, Eye, FolderOpen, Sparkles, Languages, Briefcase, Newspaper } from 'lucide-react';
 import { MediaLibrary } from '@/components/admin/MediaLibrary';
 import { HeroEditor } from '@/components/admin/HeroEditor';
 import { ContentEditor } from '@/components/admin/ContentEditor';
+import { PostsManager } from '@/components/admin/PostsManager';
 
 const GOOGLE_FONTS = [
   'Outfit', 'Inter', 'Poppins', 'Roboto', 'Open Sans', 'Montserrat',
@@ -113,7 +114,7 @@ const AdminDashboard = () => {
   const { settings, updateSettings, resetSettings } = useSiteSettings();
   const [localSettings, setLocalSettings] = useState(settings);
   const [saved, setSaved] = useState(false);
-  const [activeTab, setActiveTab] = useState<'colors' | 'typography' | 'hero' | 'text' | 'content' | 'media'>('colors');
+  const [activeTab, setActiveTab] = useState<'colors' | 'typography' | 'hero' | 'text' | 'content' | 'media' | 'blog' | 'portfolio'>('colors');
 
   useEffect(() => {
     if (localStorage.getItem('mtb_admin_auth') !== 'true') {
@@ -160,6 +161,8 @@ const AdminDashboard = () => {
     { id: 'hero' as const, label: 'Hero Section', icon: Sparkles },
     { id: 'text' as const, label: 'Text & Title', icon: FileText },
     { id: 'content' as const, label: 'Content (AI Translate)', icon: Languages },
+    { id: 'blog' as const, label: 'Blog Posts', icon: Newspaper },
+    { id: 'portfolio' as const, label: 'Portfolio', icon: Briefcase },
     { id: 'media' as const, label: 'Media Library', icon: FolderOpen },
   ];
 
@@ -345,11 +348,15 @@ const AdminDashboard = () => {
         {/* Content / AI Translate */}
         {activeTab === 'content' && <ContentEditor />}
 
+        {/* Blog & Portfolio */}
+        {activeTab === 'blog' && <PostsManager kind="blog" />}
+        {activeTab === 'portfolio' && <PostsManager kind="portfolio" />}
+
         {/* Media */}
         {activeTab === 'media' && <MediaLibrary />}
 
         {/* Action Bar (hidden on Media & Content tabs — those save instantly per action) */}
-        {activeTab !== 'media' && activeTab !== 'content' && (
+        {activeTab !== 'media' && activeTab !== 'content' && activeTab !== 'blog' && activeTab !== 'portfolio' && (
         <div className="flex items-center justify-between mt-6 bg-card rounded-xl p-4 border border-border shadow-card">
           <Button variant="outline" onClick={handleReset} className="text-destructive border-destructive/30 hover:bg-destructive/10">
             <RotateCcw className="w-4 h-4 mr-1" /> Reset to Default
