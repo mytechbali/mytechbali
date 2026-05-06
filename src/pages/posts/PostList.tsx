@@ -8,7 +8,9 @@ import LanguageSwitcher from '@/components/LanguageSwitcher';
 
 export const PostList = ({ kind }: { kind: PostKind }) => {
   const { posts } = usePosts(kind);
-  const published = posts.filter(p => p.status === 'published');
+  const published = posts
+    .filter(p => p.status === 'published')
+    .sort((a, b) => (Number(!!b.featured) - Number(!!a.featured)) || (b.createdAt - a.createdAt));
   const title = kind === 'blog' ? 'Blog' : 'Portfolio';
   const subtitle = kind === 'blog' ? 'News, tips and tutorials.' : 'Selected projects and case studies.';
   const base = kind === 'blog' ? '/blog' : '/portfolio';
