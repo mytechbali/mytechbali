@@ -1,5 +1,5 @@
 import { useEffect } from 'react';
-import { useParams, Link, useSearchParams } from 'react-router-dom';
+import { useParams, Link } from 'react-router-dom';
 import { usePosts } from '@/features/posts/usePosts';
 import { PostKind } from '@/features/posts/types';
 import { BlockRenderer } from '@/features/posts/BlockRenderer';
@@ -11,8 +11,6 @@ import { ArrowLeft } from 'lucide-react';
 
 export const PostDetail = ({ kind }: { kind: PostKind }) => {
   const { slug = '' } = useParams();
-  const [search] = useSearchParams();
-  const isPreview = search.get('preview') === '1';
   const { getBySlug } = usePosts();
   const post = getBySlug(slug);
   const base = kind === 'blog' ? '/blog' : '/portfolio';
