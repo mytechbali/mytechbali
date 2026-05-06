@@ -34,6 +34,11 @@ export const PostDetail = ({ kind }: { kind: PostKind }) => {
     <div className="min-h-screen flex flex-col">
       <Navbar />
       <main className="flex-1 pt-20">
+        {post.status === 'draft' && (
+          <div className="bg-amber-500/15 border-y border-amber-500/30 text-amber-900 dark:text-amber-200 text-center text-sm py-2">
+            Draft preview — this post is not published yet.
+          </div>
+        )}
         <div className="container mx-auto px-6 mt-6">
           <Link to={base} className="inline-flex items-center gap-1 text-sm text-muted-foreground hover:text-primary"><ArrowLeft className="w-4 h-4" /> Back to {kind}</Link>
         </div>

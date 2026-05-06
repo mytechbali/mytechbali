@@ -23,6 +23,7 @@ export interface Post {
   cover: string;
   category: string;
   status: 'draft' | 'published';
+  featured?: boolean;
   blocks: Block[];
   createdAt: number;
   updatedAt: number;

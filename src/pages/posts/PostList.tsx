@@ -8,7 +8,9 @@ import LanguageSwitcher from '@/components/LanguageSwitcher';
 
 export const PostList = ({ kind }: { kind: PostKind }) => {
   const { posts } = usePosts(kind);
-  const published = posts.filter(p => p.status === 'published');
+  const published = posts
+    .filter(p => p.status === 'published')
+    .sort((a, b) => (Number(!!b.featured) - Number(!!a.featured)) || (b.createdAt - a.createdAt));
   const title = kind === 'blog' ? 'Blog' : 'Portfolio';
   const subtitle = kind === 'blog' ? 'News, tips and tutorials.' : 'Selected projects and case studies.';
   const base = kind === 'blog' ? '/blog' : '/portfolio';
@@ -29,8 +31,11 @@ export const PostList = ({ kind }: { kind: PostKind }) => {
           <div className={`grid gap-8 ${kind === 'portfolio' ? 'md:grid-cols-2 lg:grid-cols-3' : 'md:grid-cols-2 lg:grid-cols-3'}`}>
             {published.map(p => (
               <Link key={p.id} to={`${base}/${p.slug}`} className="group block bg-card border border-border rounded-2xl overflow-hidden hover:shadow-card transition-all hover:-translate-y-1">
-                <div className="aspect-video bg-muted overflow-hidden">
+                <div className="relative aspect-video bg-muted overflow-hidden">
                   {p.cover ? <img src={p.cover} alt={p.title} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" /> : null}
+                  {p.featured && (
+                    <span className="absolute top-3 left-3 text-[10px] uppercase tracking-wider px-2 py-1 rounded bg-primary text-primary-foreground font-semibold shadow">Featured</span>
+                  )}
                 </div>
                 <div className="p-5">
                   {p.category && <span className="text-xs uppercase tracking-wide text-primary font-semibold">{p.category}</span>}

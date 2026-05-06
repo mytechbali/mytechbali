@@ -8,7 +8,7 @@ import { usePosts } from '@/features/posts/usePosts';
 import { Post, PostKind, slugify } from '@/features/posts/types';
 import { BlockEditor } from '@/features/posts/BlockEditor';
 import { BlockRenderer } from '@/features/posts/BlockRenderer';
-import { FileText, Briefcase, Plus, Trash2, ArrowLeft, Eye, Save, ExternalLink } from 'lucide-react';
+import { FileText, Briefcase, Plus, Trash2, ArrowLeft, Eye, Save, ExternalLink, Star } from 'lucide-react';
 import { toast } from 'sonner';
 
 export const PostsManager = ({ kind }: { kind: PostKind }) => {
@@ -64,11 +64,16 @@ export const PostsManager = ({ kind }: { kind: PostKind }) => {
                     <span className={`text-[10px] uppercase tracking-wide px-1.5 py-0.5 rounded ${p.status === 'published' ? 'bg-accent/20 text-accent-foreground' : 'bg-muted text-muted-foreground'}`}>
                       {p.status}
                     </span>
+                    {p.featured && (
+                      <span className="text-[10px] uppercase tracking-wide px-1.5 py-0.5 rounded bg-primary/15 text-primary flex items-center gap-1">
+                        <Star className="w-3 h-3" /> featured
+                      </span>
+                    )}
                   </div>
                   <p className="text-xs text-muted-foreground truncate">/{p.slug} · {p.blocks.length} block{p.blocks.length === 1 ? '' : 's'}</p>
                 </div>
                 <Button size="sm" variant="outline" onClick={() => setEditingId(p.id)}>Edit</Button>
-                <Button size="sm" variant="ghost" onClick={() => window.open(`${routeBase}/${p.slug}`, '_blank')}>
+                <Button size="sm" variant="ghost" title={p.status === 'published' ? 'Open' : 'Preview draft'} onClick={() => window.open(`${routeBase}/${p.slug}`, '_blank')}>
                   <ExternalLink className="w-4 h-4" />
                 </Button>
                 <Button size="sm" variant="ghost" className="text-destructive" onClick={() => { if (confirm('Delete this post?')) { remove(p.id); toast.success('Deleted'); } }}>
@@ -104,6 +109,9 @@ const PostEditor = ({
         <div className="flex items-center gap-2">
           <Button size="sm" variant="outline" onClick={() => setPreviewOn(!previewOn)}>
             <Eye className="w-4 h-4 mr-1" /> {previewOn ? 'Edit' : 'Preview'}
+          </Button>
+          <Button size="sm" variant={post.featured ? 'default' : 'outline'} onClick={() => onUpdate({ featured: !post.featured })}>
+            <Star className={`w-4 h-4 mr-1 ${post.featured ? 'fill-current' : ''}`} /> {post.featured ? 'Featured' : 'Feature'}
           </Button>
           <Button size="sm" variant={post.status === 'published' ? 'secondary' : 'default'} onClick={() => onUpdate({ status: post.status === 'published' ? 'draft' : 'published' })}>
             {post.status === 'published' ? 'Unpublish' : 'Publish'}
