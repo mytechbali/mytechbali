@@ -3,7 +3,10 @@ import { usePosts } from '@/features/posts/usePosts';
 
 const LatestPosts = () => {
   const { posts } = usePosts();
-  const latest = posts.filter(p => p.status === 'published').slice(0, 3);
+  const latest = posts
+    .filter(p => p.status === 'published')
+    .sort((a, b) => (Number(!!b.featured) - Number(!!a.featured)) || (b.createdAt - a.createdAt))
+    .slice(0, 3);
   if (latest.length === 0) return null;
 
   return (
